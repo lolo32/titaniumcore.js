@@ -25,138 +25,169 @@ integer value, string value and base64 string to byte arrays or vice versa.
 
 [binary.js](binary.js) defines following functions :
 
-* BASE64
+- BASE64
 
-  *  `function base64_encode(s)`  
-        Converts a byte array to a Base64 string.
-    
-  *  `function base64_decode(s)`  
-        Converts a Base64 string to a byte array.
+  - `function base64_encode(s)`
 
-* BASE64X
+    Converts a byte array to a Base64 string.
 
-    Base64X is a modified version of Base64 that I designed by myself.
-    Base64X uses only A-Z a-z 0-9 so it is safe to use in 7-bit systems
-    or in URI path string.
-        
-    The idea is using escape character.  '' is a very common escape
-    character in many systems. A sequence starts with  is treated
-    different character and '\' is treated as '' itself. 
-    
-    I noticed that an escape character can be any of ASCII character
-    even can be one of an alphabet characters.
-    
-    Base64X uses 'x' as an escape character.  "xa" is treated as "+" and
-    "xb" is treated as "/".  And "xx" is treated as "x".  Otherwise
-    generates an error.
+  - `function base64_decode(s)`
 
-    Base64X differs in several points. A size of Base64X encoded string
-    is slightly larger than an ordinal Base64 encoded string.  And a
-    size of Base64 encoded string is predictable but a size of Base64X
-    encoded string differs depending on the contents.
+    Converts a Base64 string to a byte array.
 
-  *  `function base64x_encode(s)`  
-        Converts a byte array to Base64X string.
+- BASE64X
 
-  *  `function base64x_decode(s)`  
-        Converts a Base64X string to a byte array.
-        
-  *  `function base64x_pre_encode(s)`  
-        Converts Base64 encoded string to Base64X encoded string.
+  Base64X is a modified version of Base64 that I designed by myself.
+  Base64X uses only A-Z a-z 0-9 so it is safe to use in 7-bit systems
+  or in URI path string.
 
-  *  `function base64x_pre_decode(s)`  
-        Converts Base64X encoded string to Base64 encoded string.
+  The idea is using escape character.  '' is a very common escape
+  character in many systems. A sequence starts with  is treated
+  different character and '\' is treated as '' itself.
 
-* BASE16
+  I noticed that an escape character can be any of ASCII character
+  even can be one of an alphabet characters.
 
-  *  `function base16_encode( data, columns, delim )`  
-        Converts a byte array to a Base16 string.
+  Base64X uses 'x' as an escape character.  "xa" is treated as "+" and
+  "xb" is treated as "/".  And "xx" is treated as "x".  Otherwise
+  generates an error.
 
-  *  `function base16_decode( data )`  
-        Converts a Base16 string to a byte array.
+  Base64X differs in several points. A size of Base64X encoded string
+  is slightly larger than an ordinal Base64 encoded string.  And a
+  size of Base64 encoded string is predictable but a size of Base64X
+  encoded string differs depending on the contents.
 
-  *  `function base16( data, columns, delim )`  
-        Same as base16_encode() function.
+  - `function base64x_encode(s)`
 
-* UTF-8
+    Converts a byte array to Base64X string.
 
-  *  `function utf82str( data )`  
-        Converts a string to a byte array contains a utf-8 binary data.
+  - `function base64x_decode(s)`
 
-  *  `function str2utf8( str )`  
-        Converts a byte array contains a utf-8 binary data to a string.
+    Converts a Base64X string to a byte array.
 
-  *  `function char2str( ca )`  
-        Converts a string data to a char array.
+  - `function base64x_pre_encode(s)`
 
-  *  `function str2char( str )`  
-        Converts a char array to a string data.
+    Converts Base64 encoded string to Base64X encoded string.
+
+  - `function base64x_pre_decode(s)`
+
+    Converts Base64X encoded string to Base64 encoded string.
+
+- BASE16
+
+  - `function base16_encode( data, columns, delim )`
+
+    Converts a byte array to a Base16 string.
+
+  - `function base16_decode( data )`
+
+    Converts a Base16 string to a byte array.
+
+  - `function base16( data, columns, delim )`
+
+    Same as base16_encode() function.
+
+- UTF-8
+
+  - `function utf82str( data )`
+
+    Converts a string to a byte array contains a utf-8 binary data.
+
+  - `function str2utf8( str )`
+
+    Converts a byte array contains a utf-8 binary data to a string.
+
+  - `function char2str( ca )`
+
+    Converts a string data to a char array.
+
+  - `function str2char( str )`
+
+    Converts a char array to a string data.
 
 
-* Integer <-> Binary String Conversion
+- Integer <-> Binary String Conversion
 
-    The postfix _be means big-endian byte order.  
-    It converts from/to big-endian values.
+  The postfix `_be` means big-endian byte order.
+  It converts from/to big-endian values.
 
-    The postfix _le means little-endian byte order.  
-    It converts from/to little-endian values.
+  The postfix `_le` means little-endian byte order.
+  It converts from/to little-endian values.
 
-    Default byte order is big-endian.  
-    Functions which have no postfix converts from/to big-endian values.
+  Default byte order is big-endian.
+  Functions which have no postfix converts from/to big-endian values.
 
-  *  `function i2ba_be(value)`  
-        Converts a 32bit-integer to a byte array in big-endian byte order.
+  - `function i2ba_be(value)`
 
-  *  `function ba2i_be(value)`  
-        Converts a byte array to a 32bit-integer in big-endian byte order.
+    Converts a 32bit-integer to a byte array in big-endian byte order.
 
-  *  `function i2ba_le(value)`  
-        Converts a 32bit-integer to a byte array in little-endian byte order.
+  - `function ba2i_be(value)`
 
-  *  `function ba2i_le(value)`  
-        Converts a byte array to a 32bit-integer in little-endian byte order.
+    Converts a byte array to a 32bit-integer in big-endian byte order.
 
-  *  `function i2ba(value)`  
-        Converts a 32bit-integer to a byte array in default byte order.
+  - `function i2ba_le(value)`
 
-  *  `function ba2i(value)`  
-        Converts a byte array to a 32bit-integer in default byte order.
+    Converts a 32bit-integer to a byte array in little-endian byte order.
 
-  *  `function s2ba_be(value)`  
-        Converts a 16bit-integer to a byte array in big-endian byte order.
+  - `function ba2i_le(value)`
 
-  *  `function ba2s_be(value)`  
-        Converts a byte array to a 16bit-integer in big-endian byte order.
+    Converts a byte array to a 32bit-integer in little-endian byte order.
 
-  *  `function s2ba_le(value)`  
-        Converts a 16bit-integer to a byte array in little-endian byte order.
+  - `function i2ba(value)`
 
-  *  `function ba2s_le(value)`  
-        Converts a byte array to a 16bit-integer in little-endian byte order.
+    Converts a 32bit-integer to a byte array in default byte order.
 
-  *  `function s2ba(value)`  
-        Converts a 16bit-integer to a byte array in default byte order.
+  - `function ba2i(value)`
 
-  *  `function ba2s(value)`  
-        Converts a byte array to a 16bit-integer in default byte order.
+    Converts a byte array to a 32bit-integer in default byte order.
 
-  *  `function ia2ba(value)`  
-        Converts a 32bit-integer array to a byte array in default byte order.
+  - `function s2ba_be(value)`
 
-  *  `function ba2ia(value)`  
-        Converts a 32bit-integer array to a byte array in default byte order.
+    Converts a 16bit-integer to a byte array in big-endian byte order.
 
-  *  `function ia2ba_be(value)`  
-        Converts a 32bit-integer array to a byte array in big-endian byte order.
+  - `function ba2s_be(value)`
 
-  *  `function ba2ia_be(value)`  
-        Converts a 32bit-integer array to a byte array in big-endian byte order.
+    Converts a byte array to a 16bit-integer in big-endian byte order.
 
-  *  `function ia2ba_le(value)`  
-        Converts a 32bit-integer array to a byte array in little-endian byte order.
+  - `function s2ba_le(value)`
 
-  *  `function ba2ia_le(value)`  
-        Converts a 32bit-integer array to a byte array in little-endian byte order.
+    Converts a 16bit-integer to a byte array in little-endian byte order.
+
+  - `function ba2s_le(value)`
+
+    Converts a byte array to a 16bit-integer in little-endian byte order.
+
+  - `function s2ba(value)`
+
+    Converts a 16bit-integer to a byte array in default byte order.
+
+  - `function ba2s(value)`
+
+    Converts a byte array to a 16bit-integer in default byte order.
+
+  - `function ia2ba(value)`
+
+    Converts a 32bit-integer array to a byte array in default byte order.
+
+  - `function ba2ia(value)`
+
+    Converts a 32bit-integer array to a byte array in default byte order.
+
+  - `function ia2ba_be(value)`
+
+    Converts a 32bit-integer array to a byte array in big-endian byte order.
+
+  - `function ba2ia_be(value)`
+
+    Converts a 32bit-integer array to a byte array in big-endian byte order.
+
+  - `function ia2ba_le(value)`
+
+    Converts a 32bit-integer array to a byte array in little-endian byte order.
+
+  - `function ba2ia_le(value)`
+
+    Converts a 32bit-integer array to a byte array in little-endian byte order.
 
 ## ABOUT TITANIUMCORE.JS PROJECT
 

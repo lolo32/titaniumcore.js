@@ -8,7 +8,7 @@ Atsushi Oka [ http://oka.nu/ ]                                      Jan 15,2009
 This document describes about MessageFormat interface.
 For further information of the interface files, see [readme.interface.md](readme.interface.md).
 
-```c_cpp
+```cpp
 /*
  * MessageFormat - This interface defines methods that is necessary for RSA
  * encryption and decryption.  A class that implements this interface must
@@ -29,16 +29,16 @@ interface MessageFormat {
     /*
      * Encrypts/Decrypts a message with the specified RSA object
      * asynchronously. There are three callback functions that can be
-     * specified. 
-     * 
+     * specified.
+     *
      *      _progress : specifies a closure that will be executed when each
-     *      step of the process is done. 
+     *      step of the process is done.
      *
      *          function _progress(c);
      *
      *      _result : specifies a closure that will receive the
      *      encrypted/decrypted message.
-     * 
+     *
      *          function _result(byte[] message)
      *
      *      _done : specifies a closure that will be executed when the
@@ -51,13 +51,13 @@ interface MessageFormat {
      *
      * Returns a timer id.
      */
-    int publicEncryptAsync( RSA rsa, byte[] text, 
+    int publicEncryptAsync( RSA rsa, byte[] text,
             Function _progress, Function _result, Function _done );
-    int publicDecryptAsync( RSA rsa, byte[] text, 
+    int publicDecryptAsync( RSA rsa, byte[] text,
             Function _progress, Function _result, Function _done );
-    int privateEncryptAsync( RSA rsa, byte[] text, 
+    int privateEncryptAsync( RSA rsa, byte[] text,
             Function _progress, Function _result, Function _done );
-    int privateDecryptAsync( RSA rsa, byte[] text, 
+    int privateDecryptAsync( RSA rsa, byte[] text,
             Function _progress, Function _result, Function _done );
 
     /*

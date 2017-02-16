@@ -16,77 +16,86 @@ problems such as freezing browsers, "slow-downing" warning dialogs, etc.
 ## Demonstration
 
 Block-Cipher Demonstration
-*  [Cipher.sample.html](Cipher.sample.html)
+- [Cipher.sample.html](Cipher.sample.html)
 
 RSA Key-Generation and Encryption/Decryption
-*  [RSA.sample1.html](RSA.sample1.html)
-*  [RSA.sample2.html](RSA.sample2.html)
+- [RSA.sample1.html](RSA.sample1.html)
+- [RSA.sample2.html](RSA.sample2.html)
 
 SHA Digest Calculation Demonstration
-*  [SHA.sample.html](SHA.sample.html)
+- [SHA.sample.html](SHA.sample.html)
 
 ## Contents
 
-* [Cipher.js](Cipher.js)
+- [Cipher.js](Cipher.js)
 
-    Contains Cipher class which implements some block-cipher algorithms.  
-    See [Cipher.readme.md](Cipher.readme.md)
+  Contains Cipher class which implements some block-cipher algorithms.
 
-* [RSA.init1.js](RSA.init1.js)
-* [RSA.init2.js](RSA.init2.js)
-* [RSA.init3.js](RSA.init3.js)
+  See [Cipher.readme.md](Cipher.readme.md)
 
-    Contains RSA class which implements RSA encryption,decryption and
-    key-generation with asynchronous processing feature.  
-    See [RSA.readme.md](RSA.readme.md)
+- [RSA.init1.js](RSA.init1.js)  
+  [RSA.init2.js](RSA.init2.js)  
+  [RSA.init3.js](RSA.init3.js)
 
-* [BigInteger.init1.js](BigInteger.init1.js)
-* [BigInteger.init2.js](BigInteger.init2.js)
-* [BigInteger.init3.js](BigInteger.init3.js)
+  Contains RSA class which implements RSA encryption,decryption and
+  key-generation with asynchronous processing feature.
 
-    Contains BigInteger class which implements calculation of variable
-    length integer.  
-    See [BigInteger.readme.md](BigInteger.readme.md)
+  See [RSA.readme.md](RSA.readme.md)
 
-* [SecureRandom.js](SecureRandom.js)
+- [BigInteger.init1.js](BigInteger.init1.js)  
+  [BigInteger.init2.js](BigInteger.init2.js)  
+  [BigInteger.init3.js](BigInteger.init3.js)
 
-    Contains SecureRandom class which implements Arcfour pseudo random
-    generator.  
-    See [SecureRandom.readme.md](SecureRandom.readme.md)
+  Contains BigInteger class which implements calculation of variable
+  length integer.
 
-* [BitPadding.js](BitPadding.js)
+  See [BigInteger.readme.md](BigInteger.readme.md)
 
-    Contains a class that implements "bit-padding" padding-scheme.
-    See [BitPadding.readme.md](BitPadding.readme.md)
+- [SecureRandom.js](SecureRandom.js)
 
-* [SOAEP.js](SOAEP.js)
+  Contains SecureRandom class which implements Arcfour pseudo random
+  generator.
 
-    Contains a class that implements a padding-scheme SOAEP. SOAEP is an
-    original scheme that I have designed for Titaniumcore project.  
-    See [SOAEP.readme.md](SOAEP.readme.md)
+  See [SecureRandom.readme.md](SecureRandom.readme.md)
 
-* [RSAKeyFormat.js](RSAKeyFormat.js)
+- [BitPadding.js](BitPadding.js)
 
-    Contains some methods that convert RSA key and a binary string.  
-    See [RSAKeyFormat.readme.md](RSAKeyFormat.readme.md)
+  Contains a class that implements "bit-padding" padding-scheme.
+  See [BitPadding.readme.md](BitPadding.readme.md)
 
-* [RSAMessageFormat.js](RSAMessageFormat.js)
+- [SOAEP.js](SOAEP.js)
 
-    Defining facade methods for RSA encryption/decryption.  
-    See [RSAMessageFormat.readme.md](RSAMessageFormat.readme.md)
+  Contains a class that implements a padding-scheme SOAEP. SOAEP is an
+  original scheme that I have designed for Titaniumcore project.
 
-* [SHA.js](SHA.js)
+  See [SOAEP.readme.md](SOAEP.readme.md)
 
-    Contains SHA class that calculates various SHA hash value.  
-    See [SHA.readme.md](SHA.readme.md)
+- [RSAKeyFormat.js](RSAKeyFormat.js)
 
-* [jsSHA.js](jsSHA.js)
-* [jsSHA.class.js](jsSHA.class.js)
+  Contains some methods that convert RSA key and a binary string.
 
-    Contains the core methods for SHA calculation.  
-    See [jsSHA.readme.md](jsSHA.readme.md)
+  See [RSAKeyFormat.readme.md](RSAKeyFormat.readme.md)
 
-    SPECIAL THANKS to Brian Turek [ http://sourceforge.net/users/caligatio ]
+- [RSAMessageFormat.js](RSAMessageFormat.js)
+
+  Defining facade methods for RSA encryption/decryption.
+
+  See [RSAMessageFormat.readme.md](RSAMessageFormat.readme.md)
+
+- [SHA.js](SHA.js)
+
+  Contains SHA class that calculates various SHA hash value.
+
+  See [SHA.readme.md](SHA.readme.md)
+
+- [jsSHA.js](jsSHA.js)  
+  [jsSHA.class.js](jsSHA.class.js)
+
+  Contains the core methods for SHA calculation.
+
+  See [jsSHA.readme.md](jsSHA.readme.md)
+
+  SPECIAL THANKS to Brian Turek [ http://sourceforge.net/users/caligatio ]
 
 ## Notice
 
@@ -94,23 +103,23 @@ SHA Digest Calculation Demonstration
 
   Most of above scripts depend on "tools" scripts and "nonstructured.js".
 
-    - "tools" scripts
-    
-      "tools" is a set of utility scripts.  See [readme.md](../tools/readme.md).
+  - "tools" scripts
 
-    - [nonstructured.js](../nonstructured/nonstructured.js)
-    
-      "nonstructured.js" is a framework for asynchronous execution.  
-      See [nonstructured.readme.md](../nonstructured/nonstructured.readme.md) 
+    "tools" is a set of utility scripts.  See [readme.md](../tools/readme.md).
+
+  - [nonstructured.js](../nonstructured/nonstructured.js)
+
+    "nonstructured.js" is a framework for asynchronous execution.  
+    See [nonstructured.readme.md](../nonstructured/nonstructured.readme.md)
 
 
-- Data Conversion 
+- Data Conversion
 
   This library does not support utf-8 conversion nor base64
   conversion directly. Most of functions in this library only take byte
   arrays as their parameters and their result is as a byte array object.
   This library does not implement conversions.  This is intended to keep
-  higher reusability. 
+  higher reusability.
 
   When data conversion between utf-8 or base64 to binary data is
   necessary, use "[binary.js](../tools/binary.js)" or another conversion library.
@@ -136,31 +145,31 @@ See [Cipher.readme.md](Cipher.readme.md)
 
 Following files were originally written by Tom Wu :
 
-*   SecureRandom.js
-*   BigInteger.init1.js
-*   BigInteger.init2.js
-*   BigInteger.init3.js
-*   RSA.init1.js
-*   RSA.init2.js
-*   RSA.init3.js
+- SecureRandom.js
+- BigInteger.init1.js
+- BigInteger.init2.js
+- BigInteger.init3.js
+- RSA.init1.js
+- RSA.init2.js
+- RSA.init3.js
 
-   Copyright (c) 2005  Tom Wu
-   All Rights Reserved.  
-   http://www-cs-students.stanford.edu/~tjw/jsbn/
+Copyright (c) 2005  Tom Wu
+All Rights Reserved.  
+http://www-cs-students.stanford.edu/~tjw/jsbn/
 
-   See "LICENSE" for details.  
-   http://www-cs-students.stanford.edu/~tjw/jsbn/LICENSE
+See "LICENSE" for details.  
+http://www-cs-students.stanford.edu/~tjw/jsbn/LICENSE
 
-   See [RSA.readme.md](RSA.readme.md)
+See [RSA.readme.md](RSA.readme.md)
 
 ---
 
 jsSHA.js is written by Brian Turek [ http://sourceforge.net/users/caligatio ].
 
-> A JavaScript implementation of the SHA family of hashes, 
+> A JavaScript implementation of the SHA family of hashes,
 > as defined in FIPS PUB 180-2
-> Version 1.1 Copyright Brian Turek 2008
-> Distributed under the BSD License
+> Version 1.1 Copyright Brian Turek 2008  
+> Distributed under the BSD License  
 > See http://jssha.sourceforge.net/ for more information
 >
 > Several functions taken from Paul Johnson

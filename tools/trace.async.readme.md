@@ -9,7 +9,7 @@ Atsushi Oka [ http://oka.nu/ ]                                       Jan 11,2009
 
 [trace.async.js](trace.async.js) is designed to convey compatibility to ActionScript on
 Flash.  ActionScript has `trace()` function. This function is very useful for
-debugging. Web browser does not have it, 
+debugging. Web browser does not have it,
 
 ## Example
 
@@ -21,12 +21,11 @@ debugging. Web browser does not have it,
 trace( "hello" );
 ```
 
-This creates a new popup window and displays the message on it. 
+This creates a new popup window and displays the message on it.
 
 This method has less overhead since it process messages asynchronously.
 Messages will be stored to a queue once and then will be processed
 asynchronously with a timer that `setInterval()` function generates.
-
 
 # Author
 

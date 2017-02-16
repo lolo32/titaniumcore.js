@@ -19,7 +19,7 @@ performance of JavaScript application.
 
 ## Examples
 
-1. 
+1.
    ```javascript
     var et = ElapsedTime.create( "test1" );
     et.start();
@@ -27,9 +27,9 @@ performance of JavaScript application.
         proc();
     }
     et.stop();
-    
+
     // Prints the elapsed time.
-    et.print(); 
+    et.print();
    ```
 
 
@@ -70,29 +70,35 @@ performance of JavaScript application.
 
 ## Reference
 
-    ElapsedTime.create( name )
-        Factory method that returns ElapsedTime object.
+- `ElapsedTime.create( name )`
 
-    ElapsedTime.prototype.start = function( name )
-        Start timing.
+  Factory method that returns ElapsedTime object.
 
-    ElapsedTime.prototype.stop = function()
-        Stop timing.
+- `ElapsedTime.prototype.start = function( name )`
 
-    ElapsedTime.prototype.print = function()
-        Print the time. ( Requires trace.js. )
+  Start timing.
 
-    ElapsedTime.prototype.get = function()
-        Returns the time in milliseconds.
+- `ElapsedTime.prototype.stop = function()`
 
-    ElapsedTime.prototype.name = function()
-        Returns name of this object.
+  Stop timing.
 
+- `ElapsedTime.prototype.print = function()`
 
-    ElapsedTime.display( name )
-        Print the specified profiled time. 
-        Print all profiled times when name parameter is omitted.
-        (Requires trace.js.)
+  Print the time. ( Requires trace.js. )
+
+- `ElapsedTime.prototype.get = function()`
+
+  Returns the time in milliseconds.
+
+- `ElapsedTime.prototype.name = function()`
+
+  Returns name of this object.
+
+- `ElapsedTime.display( name )`
+
+  Print the specified profiled time.
+  Print all profiled times when name parameter is omitted.
+  (Requires trace.js.)
 
 ## Author
 

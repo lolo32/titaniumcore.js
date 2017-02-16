@@ -27,7 +27,7 @@ if the user want to quit the script or not.  This is not necessary when you
 know that you are executing heavy process and this will look very awkward.
 
 If you are using Java, you can use Thread object,too. Thread is a solution
-for such situation.  But JavaScript does not have Thread. 
+for such situation.  But JavaScript does not have Thread.
 
 My solution is to break-up your function. See below examples.
 
@@ -68,7 +68,7 @@ return function() {
     }
 };
 ```
- 
+
 These two codes above have loosely same logical meaning.  The former example
 is written in normal style.  The latter is written by using multi-nested
 closure. There are some differences there. The former code will be fully
@@ -104,6 +104,7 @@ I hope it works for you, too!
 The newest version of nonstructured.js is available at the website.
 
 http://oka.nu/titaniumcore/js/nonstructured/nonstructured.readme.txt
+
 http://oka.nu/titaniumcore/js/nonstructured/nonstructured.20081230131226.zip
 
 ## LICENCE
@@ -179,7 +180,7 @@ f.ready().go();
 
 You can also call `ready().go()` to an Array object. The closures in the Array
 object will be called next to next as if it is a multi-statement in the
-analogy of structured programming.  
+analogy of structured programming.
 
 
 Basic idea of Nested-Closure-Oriented Programming is based on a new way to
@@ -227,7 +228,7 @@ This section describes "What A Closure Should be" in this framework.  The
 protocol which a closure has to follow in this framework has two categories
 returning values and parameters :
 
-### 1. Returning Value 
+### 1. Returning Value
 
 #### 1.1 Returning Value - Simple Values
 
@@ -282,7 +283,7 @@ Available returning values are :
 
         LABEL(id) : Same as true. Used for Multi-Statement-Flow-Controlling.
                     It works as same as EXIT works unless label names match.
-                    This is used for controlling nested multi-statement. 
+                    This is used for controlling nested multi-statement.
 
         * Multi-Statement-Flow-Controlling will be described later.
 
@@ -290,7 +291,7 @@ There are two categories for values to return.  User should use constant
 values rather than Boolean values for readability unless you have any proper
 reason not to use them for the sake of good manner programming.  Though it
 is not responsible.
-    
+
 SHOULD NOT
 ```javascript
 function(){
@@ -335,7 +336,7 @@ Returning an Function object / an Array object has special meaning in this
 framework.  When the closure returns an closure or an array, it will be
 executed recursively.  This behavior is implemented in the analogy of
 calling function in Structure-Oriented programming.  The flow will come back
-to the caller when callee returns false value. 
+to the caller when callee returns false value.
 
 ```javascript
 // 1. define a subroutine as a closure.
@@ -347,7 +348,7 @@ var subroutine = function(scope,param,subparam) {
 
     // 5. Set any value on the param object for returning value to callee.
     param.hardie = value * value;
-    
+
     return BREAK;
 };
 
@@ -426,7 +427,7 @@ described above are not necessarily be Boolean object.
 
 http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
 
->     (quote)  
+>     (quote)
 >        9.2 ToBoolean - The operator ToBoolean converts its argument to
 >        a value of type Boolean according to the following table :
 >
@@ -451,17 +452,19 @@ http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
 ## INJECTIONS
 
 An injection is a method which is always available on any arbitrary object
-and modifying its role as if it is another object. 
+and modifying its role as if it is another object.
 
 A calling injection method on an object alters the role of the object as if
 the object is a constant value which name is same as the injection's name.
 
 For example,
 ```javascript
-function(){
-    trace("EXIT");
-    return ({}).EXIT();
-}
+[
+    function(){
+        trace("EXIT");
+        return ({}).EXIT();
+    }
+]
 ```
 
 The example above works exactly same as the following example.
@@ -474,55 +477,68 @@ function(){
 
 Injections can be used in such situation :
 ```javascript
-function() {
-    trace( "WANNA QUIT AFTER EXECUTING A SUBROUTINE" );
-    return function() {
-        trace( "EXECUTED" );
-        return BREAK;
-    }; // (1) <<<
-},
-function(){
-    trace( "DON'T WANT EXECUTE HERE" );
-    return EXIT;
-}
+[
+    function() {
+        trace( "WANNA QUIT AFTER EXECUTING A SUBROUTINE" );
+        return function() {
+            trace( "EXECUTED" );
+            return BREAK;
+        }; // (1) <<<
+    },
+    function(){
+        trace( "DON'T WANT EXECUTE HERE" );
+        return EXIT;
+    }
+]
 ```
 
 In this case, you will return a function in (1) but at the same time, you
 also want to return constant EXIT. The function object that you return will
 be treated as if it is a boolean value true so it will work as if it is
 BREAK. (Please refer to ``Returning Value'') In such case, you can use
-injection like below : 
+injection like below :
 ```javascript
-function() {
-    trace( "WANNA QUIT AFTER EXECUTING A SUBROUTINE" );
-    return function() {
-        trace( "EXECUTED" );
-        return BREAK;
-    }.EXIT(); // This function object will be treated as if this
-              // object is a constant value EXIT.
-},
-function(){
-    trace( "DON'T WANT EXECUTE HERE" );
-    return EXIT;
-}
+[
+    function() {
+        trace( "WANNA QUIT AFTER EXECUTING A SUBROUTINE" );
+        return function() {
+            trace( "EXECUTED" );
+            return BREAK;
+        }.EXIT(); // This function object will be treated as if this
+                  // object is a constant value EXIT.
+    },
+    function(){
+        trace( "DON'T WANT EXECUTE HERE" );
+        return EXIT;
+    }
+]
 ```
 
 Injection methods are available on these five objects:
 
-* `CONTINUE()`  
-    `CONTINUE()` method alter its object's role as if the object is a constant value `CONTINUE`.
-* `BREAK()`  
-    `BREAK()` method alter its object's role as if the object is a constant value `BREAK`.
-* `AGAIN()`  
-    `AGAIN()` method alter its object's role as if the object is a constant value `AGAIN`.
-* `EXIT()`  
-    `EXIT()` method alter its object's role as if the object is a constant value `EXIT`.
-* `LABEL(id)`  
-* `IDENTIFY(id)`  
-     These two injections are used for labeling. Call `LABEL(id)` method to
-     set an identifier on the specific object to indicate which
-     statement/multi-statement will be flow-controlled by this injected
-     object.  This is called "labeling". Please refer to 1.2.3 Labeling.
+- `CONTINUE()`
+
+  `CONTINUE()` method alter its object's role as if the object is a constant value `CONTINUE`.
+
+- `BREAK()`
+
+  `BREAK()` method alter its object's role as if the object is a constant value `BREAK`.
+
+- `AGAIN()`
+
+  `AGAIN()` method alter its object's role as if the object is a constant value `AGAIN`.
+
+- `EXIT()`
+
+  `EXIT()` method alter its object's role as if the object is a constant value `EXIT`.
+
+- `LABEL(id)`  
+  `IDENTIFY(id)`
+
+  These two injections are used for labeling. Call `LABEL(id)` method to
+  set an identifier on the specific object to indicate which
+  statement/multi-statement will be flow-controlled by this injected
+  object.  This is called "labeling". Please refer to 1.2.3 Labeling.
 
 ## MULTI-STATEMENT
 
@@ -711,7 +727,7 @@ var f = [
 f.ready().go();
 ```
 
-This example outputs "1.1", "2.1", "3.1", "1.2" and stop. 
+This example outputs "1.1", "2.1", "3.1", "1.2" and stop.
 
 ###### 1.2.3.1 LABEL(id)
 
@@ -725,82 +741,95 @@ are identical, it will be treated as a normal returning value.
 ###### 1.2.3.2 IDENTIFY(id)
 
 `IDENTIFY(id)` is only available as an injection. It specifies an identifier on
-the multi-statement. 
+the multi-statement.
 
 ## REFERENCE
 
 ### GLOBAL
 
-* `Nonstructured`  
-    The core class for this framework.
-    Though user usually do not have to generate or refer this class.
+- `Nonstructured`
 
-* `CONTINUE`  
-    This is a constant value for result of a closure.  Any closure should
-    return this value when the closure still needs to be called
-    continuously.
+  The core class for this framework.
+  Though user usually do not have to generate or refer this class.
 
-* `BREAK`  
-    This is a constant value for result of a closure.  Any closure should
-    return this value when the closure does not need to be called anymore.
+- `CONTINUE`
 
-* `AGAIN`
-    This is a constant value for flow-controlling on a multi-statement.
-    When a closure returns this value, the multi-statement that belongs the
-    closure restarts from the first statement. If a closure returns this
-    value when it is not belonged by a multi-statement, it works same as
-    `BREAK`.
+  This is a constant value for result of a closure.  Any closure should
+  return this value when the closure still needs to be called
+  continuously.
 
-* `EXIT`  
-    This is a constant value for flow-controlling on a multi-statement.
-    When a closure returns this value, the multi-statement that belongs the
-    closure exits from execution. If a closure returns this value when it is
-    not belonged by a multi-statement, it works same as BREAK.
+- `BREAK`
 
-* `LABEL(id)`  
-    This is not a constant value but a function.  This function is used for
-    flow-controlling of nested-multi-statement.
-    
-    It generates a newly created object for flow-controlling.  When a
-    closure returns the value, it will affect only for the specific
-    multi-statement which has the same label name.  It is always used with
-    "injections" that is described below.
+  This is a constant value for result of a closure.  Any closure should
+  return this value when the closure does not need to be called anymore.
 
-* `FOR()`  
-    This is not a constant value but a function. The purpose of this
-    closure is  for implementing a for statement in the Nested Closure
-    Oriented Programming.
+- `AGAIN`
 
-    `FOR()` method takes three parameters "variable", "condition" and "loop".
+  This is a constant value for flow-controlling on a multi-statement.
+  When a closure returns this value, the multi-statement that belongs the
+  closure restarts from the first statement. If a closure returns this
+  value when it is not belonged by a multi-statement, it works same as
+  `BREAK`.
 
-    variable  : give an initialized object to this parameter.  
-    condition : give a closure with one parameter that checks loop condition.  
-    loop      : give a closure with one parameter that processes increment/decrement task.
+- `EXIT`
+
+  This is a constant value for flow-controlling on a multi-statement.
+  When a closure returns this value, the multi-statement that belongs the
+  closure exits from execution. If a closure returns this value when it is
+  not belonged by a multi-statement, it works same as BREAK.
+
+- `LABEL(id)`
+
+  This is not a constant value but a function.  This function is used for
+  flow-controlling of nested-multi-statement.
+
+  It generates a newly created object for flow-controlling.  When a
+  closure returns the value, it will affect only for the specific
+  multi-statement which has the same label name.  It is always used with
+  "injections" that is described below.
+
+- `FOR()`
+
+  This is not a constant value but a function. The purpose of this
+  closure is  for implementing a for statement in the Nested Closure
+  Oriented Programming.
+
+  `FOR()` method takes three parameters "variable", "condition" and "loop".
+
+  - `variable`  : give an initialized object to this parameter.
+  - `condition` : give a closure with one parameter that checks loop condition.
+  - `loop`      : give a closure with one parameter that processes increment/decrement task.
 
 ### INJECTIONS
 
-* `CONTINUE()`  
-    `CONTINUE()` method alter its object's role as if the object is a constant value CONTINUE.
+- `CONTINUE()`
 
-* `BREAK()`  
-    `BREAK()` method alter its object's role as if the object is a constant value BREAK.
+  `CONTINUE()` method alter its object's role as if the object is a constant value CONTINUE.
 
-* `AGAIN()`  
-    `AGAIN()` method alter its object's role as if the object is a constant value AGAIN.
+- `BREAK()`
 
-* `EXIT()`  
-    `EXIT()` method alter its object's role as if the object is a constant value EXIT.
+  `BREAK()` method alter its object's role as if the object is a constant value BREAK.
 
-* `LABEL(id)`  
-    Give the object an identifier for labeling.
+- `AGAIN()`
 
-* `IDENTIFY(id)`  
-    Give the object an identifier for labeling.
+  `AGAIN()` method alter its object's role as if the object is a constant value AGAIN.
+
+- `EXIT()`
+
+  `EXIT()` method alter its object's role as if the object is a constant value EXIT.
+
+- `LABEL(id)`
+
+  Give the object an identifier for labeling.
+
+- `IDENTIFY(id)`
+
+  Give the object an identifier for labeling.
 
 ### WRAPPER
 
-* `Function.ready()`
-* `Array.ready()`
+- `Function.ready()`  
+  `Array.ready()`
 
     This `ready()` method is always available on Function object and Array
     object.  It wraps the object by a newly generated Nonstructured
@@ -808,77 +837,89 @@ the multi-statement.
 
 ### THE METHODS OF NONSTRUCTURED OBJECT
 
-*    `go()`  
-        This method executes the closure asynchronously. Execution is
-        implemented by using timer. Nonstructured object calls a closure in
-        every specific period is passed. When frequency property is equal or
-        less than zero, it will synchronously execute and will not return
-        until entire process is finished.
-        
-*    `limit( value )`  
-        Manage "`limit`" property. This method sets maximum call count to the
-        object. It returns the object itself.  If no parameter is specified,
-        it will return current value.
-        
-*    `frequency( value )`  
-        Manage "`frequency`" property. This method sets execution
-        frequency by millisecond to the Nonstructured object and returns this
-        object.  If no parameter is specified, it will return the current
-        value.
+- `go()`
 
-*    `timeout( value )`  
-        Manage "`timeout`" property. This method sets maximum elapse time
-        of each timer calling  to the Nonstructured object and returns this
-        object.  If no parameter is specified, it will return the current
-        value.
+  This method executes the closure asynchronously. Execution is
+  implemented by using timer. Nonstructured object calls a closure in
+  every specific period is passed. When frequency property is equal or
+  less than zero, it will synchronously execute and will not return
+  until entire process is finished.
 
-*    `done( closure )`  
-        Manage "`done`" property. This method specifies the procedure that
-        will be executed when the whole process is done. If no parameter is
-        specified, it will return the current value.
+- `limit( value )`
 
-        ```javascript
-            var f = function() {
-                trace( "1" );
-                return BREAK;
-            };
-            var doneProc = function( succeeded, count, elapse, startTime, finishTime ) {
-                trace( "done!" );
-            };
+  Manage "`limit`" property. This method sets maximum call count to the
+  object. It returns the object itself.  If no parameter is specified,
+  it will return current value.
 
-            f.ready().done( doneProc ).go();
-        ```
+- `frequency( value )`
 
-        This example outputs  "1", "done!" and stops.
+  Manage "`frequency`" property. This method sets execution
+  frequency by millisecond to the Nonstructured object and returns this
+  object.  If no parameter is specified, it will return the current
+  value.
 
-        The closure can have parameters below :
+- `timeout( value )`
 
-        *    `succeeded`  
-                `True` if the process successfully finished. `False` if the
-                process terminated by any error.
+  Manage "`timeout`" property. This method sets maximum elapse time
+  of each timer calling  to the Nonstructured object and returns this
+  object.  If no parameter is specified, it will return the current
+  value.
 
-        *    `count`  
-                The count how many steps was executed to finish the whole process.
-                
-        *    `elapse`  
-                Elapsed time in milliseconds.
+- `done( closure )`
 
-        *    `startTime`  
-                A Date object contains the time when the process was started.
+  Manage "`done`" property. This method specifies the procedure that
+  will be executed when the whole process is done. If no parameter is
+  specified, it will return the current value.
 
-        *    `finishTime`  
-                A Date object contains the time when the process was finished.
+  ```javascript
+  var f = function() {
+      trace( "1" );
+      return BREAK;
+  };
+  var doneProc = function( succeeded, count, elapse, startTime, finishTime ) {
+      trace( "done!" );
+  };
 
-        
-*    `progress( closure )`  
-        Manage "`progress`" property. This method specifies the procedure that
-        will be executed when a step is done. If no parameter is specified,
-        it will return the current value.
+  f.ready().done( doneProc ).go();
+  ```
 
-        The closure can have a parameter below :
-    
-        *    `count`  
-                The current count which the object executed so far.
+  This example outputs  "1", "done!" and stops.
+
+  The closure can have parameters below :
+
+  - `succeeded`
+
+    `True` if the process successfully finished. `False` if the
+    process terminated by any error.
+
+  - `count`
+
+    The count how many steps was executed to finish the whole process.
+
+  - `elapse`
+
+    Elapsed time in milliseconds.
+
+  - `startTime`
+
+    A Date object contains the time when the process was started.
+
+  - `finishTime`
+
+    A Date object contains the time when the process was finished.
+
+
+- `progress( closure )`
+
+  Manage "`progress`" property. This method specifies the procedure that
+  will be executed when a step is done. If no parameter is specified,
+  it will return the current value.
+
+  The closure can have a parameter below :
+
+  - `count`
+
+    The current count which the object executed so far.
 
 ## CONTACT
 

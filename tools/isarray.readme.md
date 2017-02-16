@@ -17,7 +17,7 @@ Array.prototype.isArray=true;
 
 This is extremely simple. It make us feel that it is not necessary to be a
 library.  But adding properties to prototype produces an impact to entire
-program and it produces dependency.  
+program and it produces dependency.
 
 Management of dependency is very important.  As programs becomes bigger,
 dependency becomes more complicated, too.  If you do not manage this

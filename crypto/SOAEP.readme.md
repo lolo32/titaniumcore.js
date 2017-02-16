@@ -21,7 +21,7 @@ than OAEP since SOAEP needs more complex calculation.
 
 The purpose of designing new RSA encryption padding scheme is firstly
 just simplification. I just want to make everything simplify and easy to
-understand in order to full-implement by myself. 
+understand in order to full-implement by myself.
 
 Second, I feel strange that OAEP encrypts messages by XORing with a
 result of a hash function. I feel that it is more direct to encrypt it
@@ -29,7 +29,7 @@ by a block-cipher algorithm. Though I am not sure it is really better or
 not since I am no a cryptographer.
 
 At last, And I also intend to make the specification under my control to
-convey some compatibilities to other schemes in Titaniumcore project. 
+convey some compatibilities to other schemes in Titaniumcore project.
 
 In this document, I present a description of the algorithm. I also
 present an JavaScript implementation which you can refer in the attached
@@ -46,8 +46,8 @@ Assume the D is divided into blocks in which each block's length is BL.
 
       v0                                  v(L-2BL)    v(L-BL)     v(L)
     D |-----------|-----------|-----------|-----------|-----------|
-        BLOCK(1)    BLOCK(2)    BLOCK(N-2)  BLOCK(N-1)  BLOCK(N) 
-       
+        BLOCK(1)    BLOCK(2)    BLOCK(N-2)  BLOCK(N-1)  BLOCK(N)
+
       |-----------MESSAGE---------|<0x80><---ZERO---->|---RANDOM--|
 
 ### ENCRYPTION
@@ -72,7 +72,7 @@ Assume the D is divided into blocks in which each block's length is BL.
 
 ### RESTRICTION
 
-- length of the message has to be equal or less than (L - BL - 1). 
+- length of the message has to be equal or less than (L - BL - 1).
   The -1 is only necessary when bit-padding-scheme is enabled.
 
 - L must always be a multiple of BL. For example, when the block-cipher
@@ -81,49 +81,62 @@ Assume the D is divided into blocks in which each block's length is BL.
 
 ## IMPLEMENTATION
 
-There is an implementation by JavaScript. 
+There is an implementation by JavaScript.
 
 [SOAEP.js](SOAEP.js)
 
 SOAEP class implements interface PaddingScheme.
 See [PaddingScheme.interface.md](PaddingScheme.interface.md)
 
-* class `SOAEP()`  
-    The main class.
+- class `SOAEP()`
 
-* `SOAEP.create( random, algorithm )`  
-    A factory method.  Returns an instance of SOAEP class.
+  The main class.
 
-    - Parameter `random` :  
-        An instance of SecureRandom class.
-    - Parameter `algorithm` :  
-        Pass an object from a result of Cipher.algorithm() method.
+- `SOAEP.create( random, algorithm )`
 
-* `SOAEP.encode(input,length)`  
-    Encode a message. 
+  A factory method.  Returns an instance of SOAEP class.
 
-    - Parameter `input` :  
-        A message which is an Array object that contains byte values
-        of binary representation.
-    - Parameter `length` :  
-        Length that the encoded message is supposed to be.
+  - Parameter `random` :
 
-* `SOAEP.decode(input)`  
-    Decode a message. 
+    An instance of SecureRandom class.
 
-* `SOAEP.maxsize( length )`  
-    Calculate the maximum length of the internal message in which
-    the encrypted message can contain.
+  - Parameter `algorithm` :
 
-    - Parameter : `length`  
-        Length that the encoded message supposed to be.
+    Pass an object from a result of Cipher.algorithm() method.
 
-* `SOAEP.blocksize()`  
-    Returns block size, namely BL. This method delegate the length
-    of current cipher algorithm.
+- `SOAEP.encode(input,length)`
+
+  Encode a message.
+
+  - Parameter `input` :
+
+    A message which is an Array object that contains byte values
+    of binary representation.
+
+  - Parameter `length` :
+
+    Length that the encoded message is supposed to be.
+
+- `SOAEP.decode(input)`
+
+  Decode a message.
+
+- `SOAEP.maxsize( length )`
+
+  Calculate the maximum length of the internal message in which
+  the encrypted message can contain.
+
+  - Parameter : `length`
+
+    Length that the encoded message supposed to be.
+
+- `SOAEP.blocksize()`
+
+  Returns block size, namely BL. This method delegate the length
+  of current cipher algorithm.
 
 ## FURTHER WORK
-      
+
 I am not a cryptographer so I am not sure it is really secure.
 Especially I am not sure if it is dangerous to share a same random
 string by key and iv in the same session.  Further studying about this

@@ -8,14 +8,15 @@ Atsushi Oka [ http://oka.nu/ ]                                      Jan 15,2009
 This document describes about PaddingScheme interface.
 
 Currently there are two classes implement this interface.
-See [BitPadding.readme.md](BitPadding.readme.md)
-    [SOAEP.readme.md](SOAEP.readme.md)
+See
+- [BitPadding.readme.md](BitPadding.readme.md)  
+- [SOAEP.readme.md](SOAEP.readme.md)
 
 For further information of the interface files, see [readme.interface.md](readme.interface.md).
 
-```c_cpp
+```cpp
 /**
- * PaddingScheme - An interface for SOAEP and BitPadding 
+ * PaddingScheme - An interface for SOAEP and BitPadding
  */
 interface PaddingScheme {
     /**
@@ -39,8 +40,8 @@ interface PaddingScheme {
      * |--------------------- length ----------------------------------|
      * |AC 94 98 3D E8 CD A9 59 AC 94 00 00 00 00 00 00 00 00 00 00 00 |
      * |---      DATA LENGTH    ----|-------     PADDING          -----|
-     * 
-     * The padding has a limitation for the least size. 
+     *
+     * The padding has a limitation for the least size.
      * This method returns length - (the least size of padding).
      */
     int maxsize( int length );

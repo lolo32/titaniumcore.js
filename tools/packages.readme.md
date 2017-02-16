@@ -5,13 +5,11 @@
 
 Atsushi Oka [ http://oka.nu/ ]                                        Jan 3,2009
 
-
 This is a simple library which manages package feauture.
 
 ## INTRODUCTION
 
 [packages.js](packages.js) has four main functions to manage package.
-
 
 ## USAGE
 
@@ -20,7 +18,7 @@ This is a simple library which manages package feauture.
 Since JavaScript has no explicit compiler, it is difficult to manage
 dependency between script files in a project. Especially, when the project
 becomes larger, tracing dependency becomes a very frustrating job.  The
-goal of "packages.js" is conveying a solution for this problem. 
+goal of "packages.js" is conveying a solution for this problem.
 
 This script contains two functions `__unit(identifier)` and
 `__uses(identifier)`.  Function `__unit(identifier)` declares an identifier to
@@ -33,7 +31,7 @@ common compilers do.
 
 Not only throwing exception is the benefit.  Putting these functions at
 the head of a script file makes it easier to know which script files the
-script file relies on.  
+script file relies on.
 
 ```javascript
 
@@ -84,16 +82,18 @@ __uses( "fileX.js" ); // unknown script file. throws Exception.
 
 #### Reference
 
-   `function __unit( identifier )`  
-       Declares an identifier which represents the current script file. The
-       identifier can be any arbitrary string. The identifier does not
-       necessarily have to be its filename itself. Though it is good mannar to
-       make it identical to the file name.
+- `function __unit( identifier )`
 
-   `function __uses( identifier )`  
-       Declares that the script file depends on another specific script
-       file.  If the specified identifier is not defined yet, it will throw
-       an exception.
+  Declares an identifier which represents the current script file. The
+  identifier can be any arbitrary string. The identifier does not
+  necessarily have to be its filename itself. Though it is good mannar to
+  make it identical to the file name.
+
+- `function __uses( identifier )`
+
+  Declares that the script file depends on another specific script
+  file.  If the specified identifier is not defined yet, it will throw
+  an exception.
 
 ### THE PURPOSE 2. Importing and Exporting
 
@@ -106,58 +106,59 @@ that are very difficult to distinguish.
 One of solution is that put these classes, functions into a specific object
 in this way :
 
-   - Defining Class
-     ```javascript
-        function YourClass(){
-        }
-        YourClass.prototype.hello = function(){
-            trace("hello");
-        };
-        if ( this.foo == null ) {
-            this.foo= {};
-        }
-        if ( this.foo.bar == null ) {
-            this.foo.bar= {};
-        }
-        if ( this.foo.bar.buz == null ) {
-            this.foo.bar.buz= {};
-        }
-        this.foo.bar.buz.YourClass = YourClass;
-     ```
+  - Defining Class
 
+    ```javascript
+    function YourClass(){
+    }
+    YourClass.prototype.hello = function(){
+        trace("hello");
+    };
+    if ( this.foo == null ) {
+        this.foo= {};
+    }
+    if ( this.foo.bar == null ) {
+        this.foo.bar= {};
+    }
+    if ( this.foo.bar.buz == null ) {
+        this.foo.bar.buz= {};
+    }
+    this.foo.bar.buz.YourClass = YourClass;
+    ```
 
-   - Using Class
-     ```javascript
-        var YourClass = this.foo.bar.buz.YourClass;
-        var a = new YourClass();
-        var a.hello();
-     ```
+  - Using Class
+
+    ```javascript
+    var YourClass = this.foo.bar.buz.YourClass;
+    var a = new YourClass();
+    var a.hello();
+    ```
 
 This code is very complicated. And since it will be ignored that the one of
 the object "this","foo","bar","buz" is null and failed to load the class.
 It will not work without any error or warnings.  This is also a problem
 that is difficult to distinguish.
 
-
 The library package.js gives some functions to manage this problem simply.
 
-   - Defining Class
-     ```javascript
-        function YourClass() {
-        }
-        YourClass.prototype.hello = function(){
-            trace("hello");
-        };
-        __export( this, "foo.bar.YourClass" , YourClass );
-     ```
+  - Defining Class
 
+    ```javascript
+    function YourClass() {
+    }
+    YourClass.prototype.hello = function(){
+        trace("hello");
+    };
+    __export( this, "foo.bar.YourClass" , YourClass );
+    ```
 
-   - Using Class
-     ```javascript
-        var YourClass = __import( this, "foo.bar.YourClass" );
-        var a = new YourClass();
-        a.hello();
-     ```
+  - Using Class
+
+    ```javascript
+    var YourClass = __import( this, "foo.bar.YourClass" );
+    var a = new YourClass();
+    a.hello();
+    ```
 
 `__export()` method sets the specific class to the specified object path.
 The method also checks if the object path is already used by another
@@ -167,30 +168,32 @@ throw an exception.
 `__import()` method retrieve a class from the specified object path.
 The method also checks if the object path exists. If the object path is
 not defined, the method will throw an exception.
-    
 
 #### Reference
 
-    function __export( scope, class_path, class_object );
-        Exports an object to a specific object path.
+- `function __export( scope, class_path, class_object );`
 
-        Parameters
-            scope : specifies the root object which the method starts to
-            search from.
-            
-            class_path : specifies an object path.  period "." is used as
-            separator.
+  Exports an object to a specific object path.
 
-            class_object : specifies an object to export.
+  Parameters
 
+  - `scope` : specifies the root object which the method starts to
+    search from.
 
-    function __import( scope, class_path );
-        Parameters
-            scope : specifies the root object which the method starts to
-            search from.
-            
-            class_path : specifies an object path.  period "." is used as
-            separator.
+  - `class_path` : specifies an object path.  period "." is used as
+    separator.
+
+  - `class_object` : specifies an object to export.
+
+- `function __import( scope, class_path );`
+
+  Parameters
+
+  - `scope` : specifies the root object which the method starts to
+    search from.
+
+  - `class_path` : specifies an object path.  period "." is used as
+    separator.
 
 ## Author
 

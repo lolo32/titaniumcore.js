@@ -26,11 +26,13 @@ ActionScript
 ```
 
 ## Import
+
 ```javascript
 var SHA = __import( this,"titaniumcore.crypto.SHA" );
 ```
 
 ## Example
+
 ```javascript
 var sha = SHA.create( "SHA-1" );
 var result = sha.hash( [ 0x00, 0x00, 0x00, 0x00 ] );
@@ -39,17 +41,19 @@ alert( result.join(" ") );
 
 ## Reference
 
-* `SHA.create( type_name )`
+- `SHA.create( type_name )`
 
-    A factory method.  The parameter `type_name` Specifies hash name.
-    Available names are :  
-        "SHA-1", "SHA-224", "SHA-256","SHA-384" and "SHA-512"  
-    Otherwise throws an error. Returns an SHA object.
+  A factory method.  The parameter `type_name` Specifies hash name.
+  Available names are :
 
-* `SHA.prototype.hash( message );`
+      "SHA-1", "SHA-224", "SHA-256","SHA-384" and "SHA-512"
 
-    Calculate a hash value. The parameter message specifies an array
-    object that contains byte values to be hashed. Returns an array object.
+  Otherwise throws an error. Returns an SHA object.
+
+- `SHA.prototype.hash( message );`
+
+  Calculate a hash value. The parameter message specifies an array
+  object that contains byte values to be hashed. Returns an array object.
 
 ## Acknowledgment
 

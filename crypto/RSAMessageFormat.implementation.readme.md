@@ -6,7 +6,7 @@
 Atsushi Oka [ http://oka.nu/ ]                                        Jan 8,2009
 
 RSAMessageFormatSOAEP class and RSAMessageFormatBitPadding class define several
-methods which encrypt/decrypt messages with Titaniumcore RSA Encryption Scheme. 
+methods which encrypt/decrypt messages with Titaniumcore RSA Encryption Scheme.
 
 RSAMessageFormatSOAEP encrypts/decrypts with SOAEP.  RSAMessageFormatBitPadding
 works as well as RSAMessageFormatSOAEP except it uses Bit-Padding-Scheme instead of

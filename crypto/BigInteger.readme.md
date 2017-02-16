@@ -9,14 +9,14 @@ BigInteger is a class which manages variable length integer number which is
 analogous to BigInteger class of Java Platform API.
 
 BigInteger is defined in following three files.
-*    BigInteger.init1.js
-*    BigInteger.init2.js
-*    BigInteger.init3.js
+- BigInteger.init1.js
+- BigInteger.init2.js
+- BigInteger.init3.js
 
 The class is divided into three separated files.
-* BigInteger.init1.js defines functions for decryption. 
-* BigInteger.init2.js defines functions for encryption and key-generation. 
-* BigInteger.init3.js defines additional functions for asynchronous key-generation.
+- BigInteger.init1.js defines functions for decryption.
+- BigInteger.init2.js defines functions for encryption and key-generation.
+- BigInteger.init3.js defines additional functions for asynchronous key-generation.
 
 ## Link
 
@@ -34,242 +34,242 @@ var BigInteger = __import( this,"titaniumcore.crypto.BigInteger" );
 
 ## Constructors
 
-### ( *** defined in init1 *** )
+### defined in init1
 
-*    `new BigInteger(number)`
+- `new BigInteger(number)`
 
-        Creates a new BigInteger object from number.  The parameter "`number`"
-        must be equal or greater than -1* BigInteger.DV and less than
-        BigInteger.DV.
+  Creates a new BigInteger object from number.  The parameter "`number`"
+  must be equal or greater than -1* BigInteger.DV and less than
+  BigInteger.DV.
 
-*    `new BigInteger(string)`
+- `new BigInteger(string)`
 
-        Creates a new BigInteger object from decimal string.
+  Creates a new BigInteger object from decimal string.
 
-*    `new BigInteger(array)`
+- `new BigInteger(array)`
 
-        Creates a new BigInteger object from a byte array that contains
-        binary representation of an integer in big-endian byte order.
+  Creates a new BigInteger object from a byte array that contains
+  binary representation of an integer in big-endian byte order.
 
-*    `new BigInteger(string,radix)`
+- `new BigInteger(string,radix)`
 
-        Creates a new BigInteger object from a string.  The string will be
-        translated in the specified radix and stored to the newly created
-        BigInteger object.
+  Creates a new BigInteger object from a string.  The string will be
+  translated in the specified radix and stored to the newly created
+  BigInteger object.
 
-### ( *** defined in init2 *** )
+### defined in init2
 
-*    `new BigInteger(nbit,random)`
+- `new BigInteger(nbit,random)`
 
-        Creates a new BigInteger object that initialized by
-        a randomly generated number with the specified `nbit` length.
-        The parameter random must be a SecureRandom object.
+  Creates a new BigInteger object that initialized by
+  a randomly generated number with the specified `nbit` length.
+  The parameter random must be a SecureRandom object.
 
-*    `new BigInteger( nbit, certanity, random)`
+- `new BigInteger( nbit, certanity, random)`
 
-        Creates a new BigInteger object that initialized by a randomly
-        generated number with the specified `nbit` length that is probably
-        prime.
+  Creates a new BigInteger object that initialized by a randomly
+  generated number with the specified `nbit` length that is probably
+  prime.
 
 ## Methods
 
-### ( *** defined in init1 *** )
+### defined in init1
 
-*    `function toString(radix)`
+- `function toString(radix)`
 
-        Convert this value to a string with specified radix number and returns.
+  Convert this value to a string with specified radix number and returns.
 
-*    `function negate()`
+- `function negate()`
 
-        Returns -this.
+  Returns -this.
 
-*    `function abs()`
+- `function abs()`
 
-        Returns absolute value of this BigInteger object.
+  Returns absolute value of this BigInteger object.
 
-*    `function compareTo(v)`
+- `function compareTo(v)`
 
-        Compare this value with a specific object.
-        Returns a number less than zero if this object is less than `v`.
-        Returns zero if this object with the specified object is equal.
-        Returns a number greater than zero if this object is greater than `v`.
+  Compare this value with a specific object.
+  Returns a number less than zero if this object is less than `v`.
+  Returns zero if this object with the specified object is equal.
+  Returns a number greater than zero if this object is greater than `v`.
 
-*    `function bitLength()`
+- `function bitLength()`
 
-        Returns the number of bits in this object.
+  Returns the number of bits in this object.
 
-*    `function mod(v)`
+- `function mod(v)`
 
-        Returns a remainder of this value divided by `v`. 
+  Returns a remainder of this value divided by `v`.
 
-*    `function modPowInt(e,m)`
+- `function modPowInt(e,m)`
 
-        Returns modulo exponentiation of this object. Parameter `m` is a
-        BigInteger object and specifies a modulo.  Parameter `e` is a Number
-        object and specifies an exponent. Parameter `e` must be a Number
-        object and must be equal or greater than e and less than 2^32.
+  Returns modulo exponentiation of this object. Parameter `m` is a
+  BigInteger object and specifies a modulo.  Parameter `e` is a Number
+  object and specifies an exponent. Parameter `e` must be a Number
+  object and must be equal or greater than e and less than 2^32.
 
-### ( *** followings are defined in init2 *** )
+### defined in init2
 
-*    `function modPow(e,m)`
+- `function modPow(e,m)`
 
-        Returns modulo exponentiation of this object.
-        Parameter `e` is a BigInteger object and specifies an exponent.
-        Parameter `m` is a BigInteger object and specifies a modulo.
+  Returns modulo exponentiation of this object.
+  Parameter `e` is a BigInteger object and specifies an exponent.
+  Parameter `m` is a BigInteger object and specifies a modulo.
 
-*    `function gcd(v)`
+- `function gcd(v)`
 
-        Returns the greatest common divisor of this object and `v`.
+  Returns the greatest common divisor of this object and `v`.
 
-*    `function modInverse(m)`
+- `function modInverse(m)`
 
-        Returns 1 divided by this object
+  Returns 1 divided by this object
 
-*    `function isProbablePrime(t)`
+- `function isProbablePrime(t)`
 
-        Test primality with certainty `t`.
+  Test primality with certainty `t`.
 
-*    `function toByteArray()`
+- `function toByteArray()`
 
-        Convert this object to a byte array in big-endian byte order.
+  Convert this object to a byte array in big-endian byte order.
 
-     > ( I think, some of following methods are not tested well. Use with special care. )
+  > ( I think, some of following methods are not tested well. Use with special care. )
 
-*    `function clone()`
+- `function clone()`
 
-        Returns a clone of this object.
+  Returns a clone of this object.
 
-*    `function intValue()`
+- `function intValue()`
 
-        Converts this object to Number object and returns it.
+  Converts this object to Number object and returns it.
 
-*    `function byteValue()`
+- `function byteValue()`
 
-        Converts this object to a byte value and returns.
+  Converts this object to a byte value and returns.
 
-*    `function shortValue()`
+- `function shortValue()`
 
-        Converts this object to a short value and returns.
+  Converts this object to a short value and returns.
 
-*    `function signum()`
+- `function signum()`
 
-        Returns -1 if the value of this object represent is less than zero.
-        Returns 0 if the value of this object represent is zero.
-        Returns +1 if the value of this object represent is greater than zero.
+  Returns -1 if the value of this object represent is less than zero.
+  Returns 0 if the value of this object represent is zero.
+  Returns +1 if the value of this object represent is greater than zero.
 
-*    `function equals(a)`
+- `function equals(a)`
 
-        Returns true if the value of `a` is equal with this object. Otherwise
-        returns false.
+  Returns true if the value of `a` is equal with this object. Otherwise
+  returns false.
 
-*    `function max(a)`
+- `function max(a)`
 
-        Returns true if this value is greater than the value of `a`. Otherwise
-        returns false.
+  Returns true if this value is greater than the value of `a`. Otherwise
+  returns false.
 
-*    `function min(a)`
+- `function min(a)`
 
-        Returns true if this value is less than the value of `a`. Otherwise
-        returns false.
+  Returns true if this value is less than the value of `a`. Otherwise
+  returns false.
 
-*   `function and(a)`  
-    `function or(a)`  
-    `function xor(a)`  
-    `function andNot(a)`  
-    `function not()`
+- `function and(a)`  
+  `function or(a)`  
+  `function xor(a)`  
+  `function andNot(a)`  
+  `function not()`
 
-       The bitwise operators.
+  The bitwise operators.
 
-*   `function ope_and(a)`  
-    `function ope_or(a)`  
-    `function ope_xor(a)`  
-    `function ope_andNot(a)`  
-    `function ope_not()`
+- `function ope_and(a)`  
+  `function ope_or(a)`  
+  `function ope_xor(a)`  
+  `function ope_andNot(a)`  
+  `function ope_not()`
 
-       Aliases of the bitwise operators.  This set of alias is
-       intended to convey compatibility for ActionScript since keywords
-       "and", "or",etc. are reserved keyword for ActionScript.
+  Aliases of the bitwise operators.  This set of alias is
+  intended to convey compatibility for ActionScript since keywords
+  "and", "or",etc. are reserved keyword for ActionScript.
 
-*    `function shiftLeft()`
+- `function shiftLeft()`
 
-        A left shift operator.
+  A left shift operator.
 
-*    `function shiftRight()`
+- `function shiftRight()`
 
-        A right shift operator.
+  A right shift operator.
 
-*   `function getLowestSetBit()`  
-    `function bitCount()`  
-    `function testBit(n)`  
-    `function changeBit(n,op)`  
-    `function setBit(n)`  
-    `function clearBit(n)`  
-    `function flipBit(n)`
+- `function getLowestSetBit()`  
+  `function bitCount()`  
+  `function testBit(n)`  
+  `function changeBit(n,op)`  
+  `function setBit(n)`  
+  `function clearBit(n)`  
+  `function flipBit(n)`
 
-       Various bit operation.
+  Various bit operation.
 
-*   `function add(a)`  
-    `function subtract(a)`  
-    `function multiply(a)`  
-    `function divide(a)`  
-    `function remainder(a)`  
-    `function divideAndRemainder(a)`  
-    `function pow(e)`
+- `function add(a)`  
+  `function subtract(a)`  
+  `function multiply(a)`  
+  `function divide(a)`  
+  `function remainder(a)`  
+  `function divideAndRemainder(a)`  
+  `function pow(e)`
 
-       Various numerical calculation operators.
+  Various numerical calculation operators.
 
-*   `function ope_add(a)`  
-    `function ope_subtract(a)`  
-    `function ope_multiply(a)`  
-    `function ope_divide(a)`  
-    `function ope_remainder(a)`  
-    `function ope_divideAndRemainder(a)`  
-    `function ope_pow(e)`
+- `function ope_add(a)`  
+  `function ope_subtract(a)`  
+  `function ope_multiply(a)`  
+  `function ope_divide(a)`  
+  `function ope_remainder(a)`  
+  `function ope_divideAndRemainder(a)`  
+  `function ope_pow(e)`
 
-       Aliases for the numerical calculation operators. This set of alias is
-       intended to convey compatibility for ActionScript since keywords
-       "and", "or",etc. are reserved keyword in ActionScript.
+  Aliases for the numerical calculation operators. This set of alias is
+  intended to convey compatibility for ActionScript since keywords
+  "and", "or",etc. are reserved keyword in ActionScript.
 
 
-### ( *** defined in init3 *** )
+### defined in init3
 
-*   `function stepping_fromNumber1( bitLength, certainty, rnd )`  
-    `function stepping_isProbablePrime(t)`  
-    `function stepping_millerRabin(t)`  
-    `function stepping_modPow(e,m)`
+- `function stepping_fromNumber1( bitLength, certainty, rnd )`  
+  `function stepping_isProbablePrime(t)`  
+  `function stepping_millerRabin(t)`  
+  `function stepping_modPow(e,m)`
 
-        These functions are prefixed with "stepping_". They work as if the
-        function which name is without the prefix. The difference is that they
-        work asynchronously.
+  These functions are prefixed with "stepping_". They work as if the
+  function which name is without the prefix. The difference is that they
+  work asynchronously.
 
-        Their functions return a closure object. User should run it with a
-        framework for asynchronous execution "nonstructured.js"
+  Their functions return a closure object. User should run it with a
+  framework for asynchronous execution "nonstructured.js"
 
-        For further information , see [nonstructured.readme.md](../nonstructured/nonstructured.readme.md).
+  For further information , see [nonstructured.readme.md](../nonstructured/nonstructured.readme.md).
 
 ## Constants
 
-### ( *** defined in init1 *** )
+### defined in init1
 
-* `BigInteger.ZERO`
+- `BigInteger.ZERO`
 
-    A BigInteger object that represent zero.
+  A BigInteger object that represent zero.
 
-* `BigInteger.ONE`
+- `BigInteger.ONE`
 
-    A BigInteger object that represent one.
+  A BigInteger object that represent one.
 
 ## ACKNOWLEDGMENT
 
 Following files were originally written by Tom Wu :
 
-*    SecureRandom.js
-*    BigInteger.init1.js
-*    BigInteger.init2.js
-*    BigInteger.init3.js
-*    RSA.init1.js
-*    RSA.init2.js
-*    RSA.init3.js
+- SecureRandom.js
+- BigInteger.init1.js
+- BigInteger.init2.js
+- BigInteger.init3.js
+- RSA.init1.js
+- RSA.init2.js
+- RSA.init3.js
 
 Copyright (c) 2005  Tom Wu
 All Rights Reserved.  
@@ -283,7 +283,7 @@ Additionally Atushi Oka has done following works :
 - Added asynchronous execution feauture
 - Fixed bugs
 - Revised ambiguous class interface on constructors/methods.
-- Adapted to Flash ActionScript 
+- Adapted to Flash ActionScript
   ( "add" is a reserved identifier in ActionScript. etc.)
 
 // vim:expandtab:

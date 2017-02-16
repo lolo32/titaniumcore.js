@@ -23,19 +23,23 @@ encryption scheme - Titaniumcore RSA Encryption Scheme.
 ```
 
 ## Import
+
 ```javascript
 var RSAMessageFormat = __import( this, "titaniumcore.crypto.RSAMessageFormat" );
 ```
 
 ## Constructor
-*    `new RSAMessageFormat( paddingScheme )`
 
-        `paddingScheme` : a PaddingScheme object.
-        See [PaddingScheme.interface.md](PaddingScheme.interface.md)
+- `new RSAMessageFormat( paddingScheme )`
+
+  `paddingScheme` : a PaddingScheme object.
+
+  See [PaddingScheme.interface.md](PaddingScheme.interface.md)
 
 ## Interface
 
 RSAMessageFormat implements MessageFormat interface.
+
 See [MessageFormat.interface.md](MessageFormat.interface.md)
 
 // vim:ts=8:expandtab:

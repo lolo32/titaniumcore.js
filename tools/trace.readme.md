@@ -40,7 +40,6 @@ If you don't like this feauture, use "trace.async.js" which process
 messages asynchronously.  Though, there are certain situations that
 "trace.js" is more useful than "trace.async.js".
 
-
 # Author
 
 Copyright(c) 2009 Atsushi Oka [ http://oka.nu/ ]
